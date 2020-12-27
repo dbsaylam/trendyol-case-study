@@ -11,19 +11,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class OmdbApiManager {
-	
-	/*
-	// We can use singleton design pattern if needed.
-	private static OmdbApiManager instance = null;
-	
-	public static OmdbApiManager getInstance() {
-		if(instance == null) {
-			instance = new OmdbApiManager();
-		}
-		
-		return instance;
-	}
-	*/
 
 	private Response sendGetRequestWithQueryParam(String queryString) {
 		Response response = given()
