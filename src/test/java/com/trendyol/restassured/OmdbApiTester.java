@@ -34,16 +34,4 @@ public class OmdbApiTester {
 			.body("Released", not(emptyOrNullString()));		
 
 	}
-	
-	@Test
-	public void validate_poster_link() {
-		OmdbApiManager omdbApiManager = new OmdbApiManager();
-		String link = omdbApiManager.getPosterLinkByTitleFromSearchQueryResponse("lebowski", "The Big Lebowski");
-		
-		given()
-			.when()
-			.get(link)
-			.then().assertThat()
-			.statusCode(Constants.SUCCESS_CODE);
-	}
 }

@@ -23,7 +23,7 @@ public class OmdbApiManager {
 				.extract().response();
 
 		return response;
-	}
+	}	
 	
 	public String getMovieIdByTitleFromSearchQueryResponse(String searchQuery, String movieTitleToFind) {
 		Response response = sendGetRequestWithQueryParam(searchQuery);
@@ -38,26 +38,7 @@ public class OmdbApiManager {
 				break;
 			}
 		}
-		
 		return id;
-			
+
 	}
-	
-	public String getPosterLinkByTitleFromSearchQueryResponse(String searchQuery, String movieTitleToFind) {
-		Response response = sendGetRequestWithQueryParam(searchQuery);
-
-		JsonPath path = response.jsonPath();
-		List<Movie> movies = path.getList("Search", Movie.class);
-
-		String link = "";
-		for(int i = 0; i < movies.size(); i++) {
-			if(movies.get(i).getTitle().equals(movieTitleToFind)) {
-				link = movies.get(i).getPoster();
-				break;
-			}
-		}
-		return link;
-			
-	}
-
 }
