@@ -19,7 +19,7 @@ public class OmdbApiTester {
 	@Test
 	public void validate_movie_and_check_status_code() {
 		OmdbApiManager omdbApiManager = new OmdbApiManager();
-		String id = omdbApiManager.getMovieIdByTitleFromSearchQueryResponse(Constants.SEARCH_QUERY, Constants.MOVIE_TO_FIND);
+		String id = omdbApiManager.getMovieIdFromMappedJsonContent();
 		
 		given()
 			.contentType(ContentType.JSON)
