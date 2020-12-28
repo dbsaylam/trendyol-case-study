@@ -25,9 +25,8 @@ public class OmdbApiManager {
 		return response;
 	}
 	
-	public List<Movie> deserializeJsonContent(String searchQuery) {
+	private List<Movie> deserializeJsonContentFromResponse(Response response) {
 		
-		Response response = sendGetRequestWithQueryParam(searchQuery);
 		JsonPath path = response.jsonPath();
 		List<Movie> movies = path.getList("Search", Movie.class);
 		
@@ -35,12 +34,14 @@ public class OmdbApiManager {
 
 	}
 	
-	public String getMovieIdFromMappedJsonContent() {
-		List<Movie> movies = deserializeJsonContent(Constants.SEARCH_QUERY);
+	public String getMovieIdFromMappedJsonContent(String searchQuery, String movieToFind) {
+		
+		Response response = sendGetRequestWithQueryParam(searchQuery);
+		List<Movie> movies = deserializeJsonContentFromResponse(response);
 		
 		String id = "";
 		for(int i = 0; i < movies.size(); i++) {
-			if(movies.get(i).getTitle().equals(Constants.MOVIE_TO_FIND)) {
+			if(movies.get(i).getTitle().equals(movieToFind)) {
 				id = movies.get(i).getId();
 				break;
 			}
